@@ -14,6 +14,8 @@ Project Link hopes to be a solution to make this process easier. In a nutshell, 
 
 There are existing paid solutions available for this purpose, but they are only financially viable for large studios, and not for a small indie developer.
 
+---
+
 # Technology Used
 
 ## Client
@@ -22,3 +24,36 @@ There are existing paid solutions available for this purpose, but they are only 
 
 - Svelte
 - Tauri
+
+### Languages
+
+- Rust
+- Typescript
+
+## Server Backend
+
+### Software
+
+- Docker
+- Supabase
+- Postgresql
+- Minio
+- Nginx
+
+---
+
+# Setup
+
+## Client
+
+TODO
+
+## Server Backend
+
+#### If using non self hosted Superbase:
+
+TODO
+
+#### If self hosting, follow this guide:
+
+https://www.youtube.com/watch?v=wyUr_U6Cma4 / https://blog.activeno.de/the-ultimate-supabase-self-hosting-guide
