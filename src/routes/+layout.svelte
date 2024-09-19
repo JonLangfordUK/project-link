@@ -1,28 +1,20 @@
 <script>
   import "../app.css";
+  import { invalidate } from "$app/navigation";
+  import { onMount } from "svelte";
+
+  export let data;
+  $: ({ session, supabase } = data);
+
+  onMount(() => {
+    const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
+      if (newSession?.expires_at !== session?.expires_at) {
+        invalidate("supabase:auth");
+      }
+    });
+
+    return () => data.subscription.unsubscribe();
+  });
 </script>
 
-<div class="app">
-  <main>
-    <slot />
-  </main>
-</div>
-
-<style>
-  .app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    width: 100%;
-    max-width: 64rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-</style>
+<slot />

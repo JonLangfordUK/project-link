@@ -22,10 +22,11 @@ export const actions: Actions = {
         // Create account with Supabase
         const supabase = event.locals.supabase;
         const { email, password } = form.data;
-        const { error } = await supabase.auth.signUp({ email, password });
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+
         if (error) {
             console.log(error);
-            return setError(form, "password", "This account already exists");
+            return setError(form, "password", "Invalid and/or password");
         }
         else {
             return redirect(303, "/");

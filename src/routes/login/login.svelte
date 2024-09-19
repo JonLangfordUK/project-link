@@ -36,19 +36,5 @@
     <Form.Description>This is your password.</Form.Description>
     <Form.FieldErrors />
   </Form.Field>
-
-  <Form.Field {form} name="password_confirm">
-    <Form.Control let:attrs>
-      <Form.Label>Password Confirmation</Form.Label>
-      <Input
-        {...attrs}
-        bind:value={$formData.password_confirm}
-        type="password"
-      />
-    </Form.Control>
-    <Form.Description>Confirmation of your password.</Form.Description>
-    <Form.FieldErrors />
-  </Form.Field>
-
-  <Form.Button class="w-full mt-2">Create new account</Form.Button>
+  <Form.Button class="w-full mt-2">Login to account</Form.Button>
 </form>
