@@ -11,6 +11,7 @@
 <div class="flex h-screen items-center justify-center">
   <div class="max-w-xs flex-grow shadow rounded p-4">
     <h1 class="mb-4 text-3xl font-bold">Login</h1>
+    
     <Login data={data.form}></Login>
 
     <Divider class="mt-2 mb-2" text="or" />

@@ -1,3 +1,4 @@
+import { Button } from "$lib/components/ui/button/index.js";
 import type { PageServerLoad, Actions } from "./$types.js";
 import { fail, redirect } from "@sveltejs/kit";
 import { setError, superValidate } from "sveltekit-superforms";
