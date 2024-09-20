@@ -10,6 +10,9 @@
     superForm,
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
+  import "iconify-icon";
+
+  import { text } from "@sveltejs/kit";
 
   export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -19,13 +22,6 @@
 
   const { form: formData, enhance } = form;
 </script>
-
-<Divider class="mb-2" text="OAuth" />
-
-<Button class="w-full mb-4">Google</Button>
-<Button class="w-full mb-4">Github</Button>
-<Button class="w-full mb-4">Gitlab</Button>
-<Button class="w-full mb-4">Windows</Button>
 
 <Divider class="mb-2" text="Email" />
 
