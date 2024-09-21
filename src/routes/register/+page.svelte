@@ -5,26 +5,6 @@
   import type { PageData } from "./$types.js";
   import Register from "./register.svelte";
   export let data: PageData;
-
-  async function google_click() {
-    console.log("Register Google");
-  }
-
-  async function github_click() {
-    console.log("Register Github");
-  }
-
-  async function gitlab_click() {
-    console.log("Register Gitlab");
-  }
-
-  async function windows_click() {
-    console.log("Register Windows");
-  }
-
-  async function email_click() {
-    console.log("Register Email");
-  }
 </script>
 
 <div class="flex h-screen items-center justify-center">
@@ -32,13 +12,7 @@
     <div class="shadow rounded p-4">
       <h1 class="mb-4 text-3xl font-bold">Register</h1>
 
-      <AuthButtons
-        {google_click}
-        {github_click}
-        {gitlab_click}
-        {windows_click}
-        {email_click}
-      />
+      <AuthButtons />
     </div>
 
     <Divider class="mt-2 mb-2" text="OR" />
