@@ -62,60 +62,61 @@
       element.style.display = "block";
     }
   }
-
 </script>
 
-<div id="Provider">
-  <OAuth {oauthData} onEmailClicked={() => {ShowSubPage("Email")}} />
-</div>
-
-<form method="POST" use:enhance>
-  <div id="Email">
-    <div class="grid grid-cols-1 gap-2">
-      <Form.Field {form} name="email">
-        <Form.Control let:attrs>
-          <Form.Label>Email</Form.Label>
-          <Input {...attrs} bind:value={$formData.email} type="email" />
-        </Form.Control>
-        <Form.FieldErrors />
-      </Form.Field>
-  
-      <Form.Field {form} name="emailConfirm">
-        <Form.Control let:attrs>
-          <Form.Label>Email Confirmation</Form.Label>
-          <Input {...attrs} bind:value={$formData.emailConfirm} type="email" />
-        </Form.Control>
-        <Form.FieldErrors />
-      </Form.Field>
-
-      <Separator class="my-2"/>
-
-      <Form.Field {form} name="password">
-        <Form.Control let:attrs>
-          <Form.Label>Password</Form.Label>
-          <Input {...attrs} bind:value={$formData.password} type="password" />
-        </Form.Control>
-        <Form.FieldErrors />
-      </Form.Field>
-  
-      <Form.Field {form} name="passwordConfirm">
-        <Form.Control let:attrs>
-          <Form.Label>Password Confirm</Form.Label>
-          <Input
-            {...attrs}
-            bind:value={$formData.passwordConfirm}
-            type="password"
-          />
-        </Form.Control>
-        <Form.FieldErrors />
-      </Form.Field>
-
-      <Form.Button
-        class="w-full h-12"
-        formaction="?/registerEmail"
-      >
-        Create Account
-      </Form.Button>
-    </div>
+<div>
+  <div id="Provider">
+    <OAuth {oauthData} onEmailClicked={() => {ShowSubPage("Email")}} />
   </div>
-</form>
+  
+  <form method="POST" use:enhance>
+    <div id="Email">
+      <div class="grid grid-cols-1 gap-2">
+        <Form.Field {form} name="email">
+          <Form.Control let:attrs>
+            <Form.Label>Email</Form.Label>
+            <Input {...attrs} bind:value={$formData.email} type="email" />
+          </Form.Control>
+          <Form.FieldErrors />
+        </Form.Field>
+    
+        <Form.Field {form} name="emailConfirm">
+          <Form.Control let:attrs>
+            <Form.Label>Email Confirmation</Form.Label>
+            <Input {...attrs} bind:value={$formData.emailConfirm} type="email" />
+          </Form.Control>
+          <Form.FieldErrors />
+        </Form.Field>
+  
+        <Separator class="my-2"/>
+  
+        <Form.Field {form} name="password">
+          <Form.Control let:attrs>
+            <Form.Label>Password</Form.Label>
+            <Input {...attrs} bind:value={$formData.password} type="password" />
+          </Form.Control>
+          <Form.FieldErrors />
+        </Form.Field>
+    
+        <Form.Field {form} name="passwordConfirm">
+          <Form.Control let:attrs>
+            <Form.Label>Password Confirm</Form.Label>
+            <Input
+              {...attrs}
+              bind:value={$formData.passwordConfirm}
+              type="password"
+            />
+          </Form.Control>
+          <Form.FieldErrors />
+        </Form.Field>
+  
+        <Form.Button
+          class="w-full h-12"
+          formaction="?/registerEmail"
+        >
+          Create Account
+        </Form.Button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -11,16 +11,16 @@
 
 <div class="flex h-screen items-center justify-center">
   <div class="max-w-xs flex-grow">
-    <div class="shadow rounded p-4">
-      <h1 class="mb-4 text-3xl font-bold">Register</h1>
+    <div class="shadow rounded p-4 grid grid-cols-1 gap-4">
+      <h1 class="text-3xl font-bold">Register</h1>
 
       <Register data={data.form} />
-    </div>
 
-    <Divider class="mt-2 mb-2" text="OR" />
+      <Divider text="OR" />
 
-    <div class="shadow rounded p-4">
-      <Button class="w-full h-12" href="/login">Login</Button>
+      <div class="flex items-center justify-center">
+        <a class="text-center" href="/login">Login</a>
+      </div>
     </div>
   </div>
 </div>
