@@ -27,12 +27,13 @@ export const actions: Actions = {
     // Create account with Supabase
     const supabase = event.locals.supabase;
     const { email, password } = form.data;
+
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) {
       return setError(form, "password", "This account already exists");
-    } else {
-      return redirect(303, "/");
     }
+
+    return redirect(303, "/");
   },
   registerOAuth: async (event) => {
     const provider = event.url.searchParams.get("provider") as Provider;

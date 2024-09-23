@@ -17,20 +17,23 @@
 
 </script>
 
-<form method="POST" use:enhance>
-  {#each oauthData as { logoComponent, name, action }}
-    <Form.Button class="w-full h-12 mb-4" formaction={action}>
+<form method="POST" use:enhance>  
+  <div class="grid grid-cols-1 gap-4">
+    {#each oauthData as { logoComponent, name, action }}
+      <Form.Button class="w-full h-12" formaction={action}>
+        <div class="grid grid-cols-3 gap-4 w-2/3">
+          <img class="size-6 mr-4 w-full" src={logoComponent} alt={name} />
+          <span class="col-span-2 w-full">{name}</span>
+        </div>
+      </Form.Button>
+    {/each}
+
+    <Button class="w-full h-12" on:click={onEmailClicked}>
       <div class="grid grid-cols-3 gap-4 w-2/3">
-        <img class="size-6 mr-4 w-full" src={logoComponent} alt={name} />
-        <span class="col-span-2 w-full">{name}</span>
+        <img class="size-6 mr-4 w-full" src={email_logo} alt="Email" />
+        <span class="col-span-2 w-full">Email</span>
       </div>
-    </Form.Button>
-  {/each}
+    </Button>
+  </div>
 </form>
 
-<Button class="w-full h-12 mb-4" on:click={onEmailClicked}>
-  <div class="grid grid-cols-3 gap-4 w-2/3">
-    <img class="size-6 mr-4 w-full" src={email_logo} alt="Email" />
-    <span class="col-span-2 w-full">Email</span>
-  </div>
-</Button>
