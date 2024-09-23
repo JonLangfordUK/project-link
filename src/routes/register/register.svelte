@@ -6,17 +6,16 @@
     superForm,
   } from "sveltekit-superforms";
   import { zodClient } from "sveltekit-superforms/adapters";
+  import { onMount } from "svelte";
 
   import * as Form from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
+  import Button from "$lib/components/ui/button/button.svelte";
+  import { OAuth, OAuthData } from "$lib/components/ui/oauth";
 
   import google_logo from "$lib/assets/logos--google-icon.svg";
   import github_logo from "$lib/assets/logos--github-icon.svg";
   import discord_logo from "$lib/assets/logos--discord-icon.svg";
-  import email_logo from "$lib/assets/email.svg";
-  import Button from "$lib/components/ui/button/button.svelte";
-  import { boolean, string } from "zod";
-  import { onMount } from "svelte";
 
   export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -25,15 +24,6 @@
   });
 
   const { form: formData, enhance } = form;
-
-  const enum PageInfo {
-    Provider,
-    Email,
-    Details,
-    Password,
-  }
-
-  $: currentRegisterPageIndex = PageInfo.Provider;
 
   $: isEmailFormValid =
     $formData.email &&
@@ -46,6 +36,28 @@
     $formData.passwordConfirm &&
     $formData.password === $formData.passwordConfirm;
   $: isFormValid = isEmailFormValid && isDetailsValid && isPasswordsValid;
+
+  const oauthData: OAuthData[] = [
+    {
+      logoComponent: google_logo,
+      name: "Google",
+      action: "?/registerOAuth&provider=google",
+    },
+    {
+      logoComponent: github_logo,
+      name: "Github",
+      action: "?/registerOAuth&provider=github",
+    },
+    {
+      logoComponent: discord_logo,
+      name: "Discord",
+      action: "?/registerOAuth&provider=discord",
+    },
+  ];
+
+  onMount(() => {
+    ShowSubPage("Provider");
+  });
 
   async function ShowSubPage(nextSubPage: string) {
     const pages = ["Provider", "Email", "Details", "Passwords"];
@@ -62,53 +74,14 @@
     }
   }
 
-  onMount(() => {
-    ShowSubPage("Provider");
-  });
 </script>
 
+<div id="Provider">
+  <OAuth {oauthData} onEmailClicked={() => {ShowSubPage("Email")}} />
+</div>
 <form method="POST" use:enhance>
-  <div id="Provider">
-    <Form.Button
-      formaction="?/registerOAuth&provider=google"
-      class="w-full h-12 mb-4"
-    >
-      <div class="grid grid-cols-3 gap-4 w-2/3">
-        <img class="size-6 mr-4 w-full" src={google_logo} alt="Google" />
-        <span class="col-span-2 w-full">Google</span>
-      </div>
-    </Form.Button>
-
-    <Form.Button
-      formaction="?/registerOAuth&provider=github"
-      class="w-full h-12 mb-4"
-    >
-      <div class="grid grid-cols-3 gap-4 w-2/3">
-        <img class="size-6 mr-4 w-full" src={github_logo} alt="Github" />
-        <span class="col-span-2 w-full">Github</span>
-      </div>
-    </Form.Button>
-
-    <Form.Button
-      formaction="?/registerOAuth&provider=discord"
-      class="w-full h-12 mb-4"
-    >
-      <div class="grid grid-cols-3 gap-4 w-2/3">
-        <img class="size-6 mr-4 w-full" src={discord_logo} alt="Discord" />
-        <span class="col-span-2 w-full">Discord</span>
-      </div>
-    </Form.Button>
-
-    <Button class="w-full h-12" on:click={() => ShowSubPage("Email")}>
-      <div class="grid grid-cols-3 gap-4 w-2/3">
-        <img class="size-6 mr-4 w-full" src={email_logo} alt="Email" />
-        <span class="col-span-2 w-full">Email</span>
-      </div>
-    </Button>
-  </div>
   <div id="Email">
     <h2 class="mb-4 text-2xl font-bold">Email</h2>
-
     <Form.Field {form} name="email" class="mb-4">
       <Form.Control let:attrs>
         <Form.Label>Email</Form.Label>
