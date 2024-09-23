@@ -27,12 +27,16 @@ export const actions: Actions = {
     const supabase = event.locals.supabase;
     const { email, password } = form.data;
 
-    /*const { error } = await supabase.auth.signUp({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
     if (error) {
-      return setError(form, "password", "This account already exists");
+      console.log(error);
+      return setError(form, "password", error.message);
     }
 
-    return redirect(303, "/");*/
+    return redirect(303, "/");
   },
   loginOAuth: async (event) => {
     const provider = event.url.searchParams.get("provider") as Provider;

@@ -30,7 +30,8 @@ export const actions: Actions = {
 
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) {
-      return setError(form, "password", "This account already exists");
+      console.log(error);
+      return setError(form, "password", error.message);
     }
 
     return redirect(303, "/");

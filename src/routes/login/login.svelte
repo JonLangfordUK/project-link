@@ -28,17 +28,17 @@
     {
       logoComponent: google_logo,
       name: "Google",
-      action: "?/login&provider=google",
+      action: "?/loginOAuth&provider=google",
     },
     {
       logoComponent: github_logo,
       name: "Github",
-      action: "?/login&provider=github",
+      action: "?/loginOAuth&provider=github",
     },
     {
       logoComponent: discord_logo,
       name: "Discord",
-      action: "?/login&provider=discord",
+      action: "?/loginOAuth&provider=discord",
     },
   ];
 
