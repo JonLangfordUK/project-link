@@ -10,7 +10,6 @@
 
   import * as Form from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
-  import Button from "$lib/components/ui/button/button.svelte";
   import { OAuth, OAuthData } from "$lib/components/ui/oauth";
 
   import google_logo from "$lib/assets/logos--google-icon.svg";
