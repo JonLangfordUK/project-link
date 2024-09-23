@@ -50,6 +50,7 @@
 		"bits-ui": "^0.21.13",
 		"clsx": "^2.1.1",
 		"formsnap": "^1.0.1",
+		"iconify-icon": "^2.1.0",
 		"sveltekit-superforms": "^2.18.1",
 		"tailwind-merge": "^2.5.2",
 		"tailwind-variants": "^0.2.1",
