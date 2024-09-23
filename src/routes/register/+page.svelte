@@ -1,26 +1,18 @@
 <script lang="ts">
   import { Button } from "$lib/components/ui/button/index.js";
-  import * as Form from "$lib/components/ui/form";
   import Divider from "$lib/components/ui/divider/divider.svelte";
-
   import type { PageData } from "./$types.js";
   import Register from "./register.svelte";
-
   export let data: PageData;
 </script>
 
 <div class="flex h-screen items-center justify-center">
-  <div class="max-w-xs flex-grow">
-    <div class="shadow rounded p-4 grid grid-cols-1 gap-4">
-      <h1 class="text-3xl font-bold">Register</h1>
+  <div class="max-w-xs flex-grow shadow rounded p-4">
+    <h1 class="mb-4 text-3xl font-bold">Register</h1>
+    <Register data={data.form}></Register>
 
-      <Register data={data.form} />
+    <Divider class="mt-2 mb-2" text="or" />
 
-      <Divider text="OR" />
-
-      <div class="flex items-center justify-center">
-        <a class="text-center" href="/login">Login</a>
-      </div>
-    </div>
+    <Button class="w-full" href="/login">Login</Button>
   </div>
 </div>
