@@ -11,10 +11,7 @@
   import * as Form from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
   import { OAuth, OAuthData } from "$lib/components/ui/oauth";
-
-  import google_logo from "$lib/assets/logos--google-icon.svg";
-  import github_logo from "$lib/assets/logos--github-icon.svg";
-  import discord_logo from "$lib/assets/logos--discord-icon.svg";
+  import * as Icons from "../icons.js";
 
   export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -26,17 +23,17 @@
 
   const oauthData: OAuthData[] = [
     {
-      logoComponent: google_logo,
+      logoComponent: Icons.Google,
       name: "Google",
       action: "?/loginOAuth&provider=google",
     },
     {
-      logoComponent: github_logo,
+      logoComponent: Icons.Github,
       name: "Github",
       action: "?/loginOAuth&provider=github",
     },
     {
-      logoComponent: discord_logo,
+      logoComponent: Icons.Discord,
       name: "Discord",
       action: "?/loginOAuth&provider=discord",
     },
@@ -64,9 +61,14 @@
 
 <div>
   <div id="Provider">
-    <OAuth {oauthData} onEmailClicked={() => {ShowSubPage("Email")}} />
+    <OAuth
+      {oauthData}
+      onEmailClicked={() => {
+        ShowSubPage("Email");
+      }}
+    />
   </div>
-  
+
   <form method="POST" use:enhance>
     <div id="Email">
       <div class="grid grid-cols-1 gap-2">
@@ -77,7 +79,7 @@
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-      
+
         <Form.Field {form} name="password">
           <Form.Control let:attrs>
             <Form.Label>Password</Form.Label>
@@ -85,11 +87,8 @@
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-      
-        <Form.Button
-          class="w-full h-12"
-          formaction="?/loginEmail"
-        >
+
+        <Form.Button class="w-full h-12" formaction="?/loginEmail">
           Login
         </Form.Button>
       </div>
