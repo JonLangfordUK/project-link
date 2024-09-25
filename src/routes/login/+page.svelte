@@ -1,6 +1,4 @@
 <script lang="ts">
-  import { Button } from "$lib/components/ui/button/index.js";
-  import * as Form from "$lib/components/ui/form";
   import Divider from "$lib/components/ui/divider/divider.svelte";
 
   import type { PageData } from "./$types.js";

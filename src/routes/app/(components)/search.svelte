@@ -2,10 +2,8 @@
   import { Input } from "$lib/components/ui/input/index.js";
 </script>
 
-<div>
-  <Input
-    type="search"
-    placeholder="Search..."
-    class="h-9 md:w-[100px] lg:w-[300px]"
-  />
-</div>
+<Input
+  type="search"
+  placeholder="Search..."
+  class="h-10 flex-grow max-w-[300px]"
+/>

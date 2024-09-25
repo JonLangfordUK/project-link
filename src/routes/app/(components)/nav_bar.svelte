@@ -2,6 +2,8 @@
   import Project from "./project.svelte";
   import Search from "./search.svelte";
   import User from "./user.svelte";
+  import { page } from "$app/stores";
+  import type { Session, SupabaseClient } from "@supabase/supabase-js";
 
   export type Route = {
     title: string;
@@ -9,26 +11,37 @@
   };
 
   export let routes: Route[];
+
+  export let session: Session | null;
+  export let supabase: SupabaseClient;
+
+  $: currentRoute = $page.url.pathname;
+  $: isActive = (href: string) => currentRoute === href;
 </script>
 
-<div class="border-b">
-  <div class="flex h-16 items-center px-4">
+<div class="border-b px-4 py-2">
+  <div class="flex items-center gap-2">
     <Project />
 
-    <nav class="flex items-center space-x-4 lg:space-x-6 mx-6">
+    <nav class="flex gap-2 text-sm font-medium items-center">
       {#each routes as route}
         <a
           href={route.route}
-          class="hover:text-primary text-sm font-medium transition-colors"
+          class={isActive(route.route)
+            ? "text-foreground hover:text-foreground transition-colors p-2"
+            : "text-muted-foreground hover:text-foreground transition-colors p-2"}
         >
           {route.title}
         </a>
       {/each}
     </nav>
 
-    <div class="ml-auto flex items-center space-x-4">
-      <Search />
-      <User />
+    <div class="flex-grow">
+      <div class="flex justify-end">
+        <Search />
+      </div>
     </div>
+
+    <User {session} {supabase} />
   </div>
 </div>

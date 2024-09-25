@@ -11,8 +11,3 @@
     goto("/app");
   }
 </script>
-
-{#if user}
-  <h1>Welcome {user.email}</h1>
-  <Button on:click={logout}>Logout</Button>
-{/if}
