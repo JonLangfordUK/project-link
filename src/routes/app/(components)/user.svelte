@@ -2,14 +2,20 @@
   import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
   import * as Avatar from "$lib/components/ui/avatar/index.js";
   import { Button } from "$lib/components/ui/button/index.js";
-  import type { Session, SupabaseClient } from "@supabase/supabase-js";
   import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
+  import type { Session, SupabaseClient } from "@supabase/supabase-js";
+  import type { Route } from "./route";
 
   let className: string = "";
   export { className as class };
 
   export let session: Session | null;
   export let supabase: SupabaseClient;
+  export let userRoutes: Route[];
+
+  $: currentRoute = $page.url.pathname;
+  $: isActive = (href: string) => currentRoute === href;
 
   async function logout() {
     await supabase.auth.signOut();
@@ -52,13 +58,24 @@
           </p>
         </div>
       </DropdownMenu.Label>
+
       <DropdownMenu.Separator />
+
       <DropdownMenu.Group>
-        <DropdownMenu.Item>Profile</DropdownMenu.Item>
-        <DropdownMenu.Item>Settings</DropdownMenu.Item>
-        <DropdownMenu.Item>Admin</DropdownMenu.Item>
+        {#each userRoutes as route}
+          <DropdownMenu.Item
+            href={route.route}
+            class={isActive(route.route)
+              ? "text-foreground hover:text-foreground transition-colors p-2"
+              : "text-muted-foreground hover:text-foreground transition-colors p-2"}
+          >
+            {route.title}
+          </DropdownMenu.Item>
+        {/each}
       </DropdownMenu.Group>
+
       <DropdownMenu.Separator />
+
       <DropdownMenu.Item on:click={logout}>Log out</DropdownMenu.Item>
     </DropdownMenu.Content>
   </DropdownMenu.Root>

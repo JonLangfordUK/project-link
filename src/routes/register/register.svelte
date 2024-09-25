@@ -15,7 +15,7 @@
 
   import DiscordLogo from "$lib/assets/icons/discord.svelte";
   import GithubLogo from "$lib/assets/icons/github.svelte";
-  import GmailLogo from "$lib/assets/icons/gmail.svelte";
+  import GoogleLogo from "$lib/assets/icons/google.svelte";
 
   export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -27,7 +27,7 @@
 
   const oauthData: OAuthData[] = [
     {
-      logo: GmailLogo,
+      logo: GoogleLogo,
       name: "Google",
       action: "?/registerOAuth&provider=google",
     },

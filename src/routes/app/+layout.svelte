@@ -1,13 +1,34 @@
 <script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable/index.js";
   import NavBar from "./(components)/nav_bar.svelte";
-  import { routes } from "./nav_config.js";
+  import type { Project } from "./(components)/project.ts";
+  import { routes } from "./nav_config";
+  import { userRoutes } from "./user_nav_config";
+
+  import GoogleLogo from "$lib/assets/icons/google.svelte";
 
   export let data;
   $: ({ session, supabase } = data);
+
+  const projects: Project[] = [
+    {
+      title: "Example Project A",
+      name: "pj-a",
+      icon: GoogleLogo,
+    },
+    {
+      title: "Another Project B",
+      name: "pj-b",
+      icon: GoogleLogo,
+    },
+    {
+      title: "Yet Another Project C",
+      name: "pj-c",
+      icon: GoogleLogo,
+    },
+  ];
 </script>
 
-<NavBar {routes} {session} {supabase} />
+<NavBar {routes} {userRoutes} {projects} {session} {supabase} />
 
 <div class="m-4">
   <slot />

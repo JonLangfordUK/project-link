@@ -25,21 +25,21 @@
   <div class="grid grid-cols-1 gap-4">
     {#each oauthData as data}
       <Form.Button class="w-full h-12" formaction={data.action}>
-        <div class="grid grid-cols-3 gap-4 w-2/3">
+        <div class="grid grid-cols-3 gap-4 w-2/3 items-center">
           <div class="w-9 h-9">
             <svelte:component this={data.logo} />
           </div>
-          <span class="col-span-2 w-full">{data.name}</span>
+          <span class="col-span-2 w-full items-center">{data.name}</span>
         </div>
       </Form.Button>
     {/each}
 
     <Button class="w-full h-12" on:click={onEmailClicked}>
-      <div class="grid grid-cols-3 gap-4 w-2/3">
+      <div class="grid grid-cols-3 gap-4 w-2/3 items-center">
         <div class="w-9 h-9">
           <svelte:component this={Email} />
         </div>
-        <span class="col-span-2 w-full">Email</span>
+        <span class="col-span-2 w-full items-center">Email</span>
       </div>
     </Button>
   </div>

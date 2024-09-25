@@ -19,4 +19,8 @@ export const routes: Route[] = [
 		title: "Reviews",
 		route: "/app/reviews",
 	},
+	{
+		title: "Project Admin",
+		route: "/app/project_admin",
+	},
 ];

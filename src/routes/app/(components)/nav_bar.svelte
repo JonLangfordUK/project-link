@@ -4,13 +4,12 @@
   import User from "./user.svelte";
   import { page } from "$app/stores";
   import type { Session, SupabaseClient } from "@supabase/supabase-js";
-
-  export type Route = {
-    title: string;
-    route: string;
-  };
+  import type { Route } from "./route";
 
   export let routes: Route[];
+  export let userRoutes: Route[];
+
+  export let projects: Project[];
 
   export let session: Session | null;
   export let supabase: SupabaseClient;
@@ -21,7 +20,7 @@
 
 <div class="border-b px-4 py-2">
   <div class="flex items-center gap-2">
-    <Project />
+    <Project {projects} />
 
     <nav class="flex gap-2 text-sm font-medium items-center">
       {#each routes as route}
@@ -42,6 +41,6 @@
       </div>
     </div>
 
-    <User {session} {supabase} />
+    <User {session} {supabase} {userRoutes} />
   </div>
 </div>
