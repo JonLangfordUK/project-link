@@ -2,7 +2,7 @@
   import type { ComponentType } from "svelte";
   import type { Icon } from "lucide-svelte";
   import * as Select from "$lib/components/ui/select/index.js";
-  import Gmail from "./icons/gmail.svelte";
+  import Gmail from "$lib/assets/icons/gmail.svelte";
 
   export type Project = {
     title: string;

@@ -11,7 +11,10 @@
   import * as Form from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
   import { OAuth, OAuthData } from "$lib/components/ui/oauth";
-  import * as Icons from "../icons.js";
+
+  import DiscordLogo from "$lib/assets/icons/discord.svelte";
+  import GithubLogo from "$lib/assets/icons/github.svelte";
+  import GmailLogo from "$lib/assets/icons/gmail.svelte";
 
   export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -21,19 +24,19 @@
 
   const { form: formData, enhance } = form;
 
-  const oauthData: OAuthData[] = [
+  let oauthData: OAuthData[] = [
     {
-      logoComponent: Icons.Google,
+      logo: GmailLogo,
       name: "Google",
       action: "?/loginOAuth&provider=google",
     },
     {
-      logoComponent: Icons.Github,
+      logo: GithubLogo,
       name: "Github",
       action: "?/loginOAuth&provider=github",
     },
     {
-      logoComponent: Icons.Discord,
+      logo: DiscordLogo,
       name: "Discord",
       action: "?/loginOAuth&provider=discord",
     },
@@ -41,6 +44,7 @@
 
   onMount(() => {
     ShowSubPage("Provider");
+    console.log(oauthData);
   });
 
   async function ShowSubPage(nextSubPage: string) {

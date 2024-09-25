@@ -10,12 +10,12 @@
 
   import * as Form from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
+  import Separator from "$lib/components/ui/separator/separator.svelte";
   import { OAuth, OAuthData } from "$lib/components/ui/oauth";
 
-  import google_logo from "$lib/assets/logos--google-icon.svg";
-  import github_logo from "$lib/assets/logos--github-icon.svg";
-  import discord_logo from "$lib/assets/logos--discord-icon.svg";
-  import Separator from "$lib/components/ui/separator/separator.svelte";
+  import DiscordLogo from "$lib/assets/icons/discord.svelte";
+  import GithubLogo from "$lib/assets/icons/github.svelte";
+  import GmailLogo from "$lib/assets/icons/gmail.svelte";
 
   export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -27,17 +27,17 @@
 
   const oauthData: OAuthData[] = [
     {
-      logoComponent: google_logo,
+      logo: GmailLogo,
       name: "Google",
       action: "?/registerOAuth&provider=google",
     },
     {
-      logoComponent: github_logo,
+      logo: GithubLogo,
       name: "Github",
       action: "?/registerOAuth&provider=github",
     },
     {
-      logoComponent: discord_logo,
+      logo: DiscordLogo,
       name: "Discord",
       action: "?/registerOAuth&provider=discord",
     },
@@ -65,9 +65,14 @@
 
 <div>
   <div id="Provider">
-    <OAuth {oauthData} onEmailClicked={() => {ShowSubPage("Email")}} />
+    <OAuth
+      {oauthData}
+      onEmailClicked={() => {
+        ShowSubPage("Email");
+      }}
+    />
   </div>
-  
+
   <form method="POST" use:enhance>
     <div id="Email">
       <div class="grid grid-cols-1 gap-2">
@@ -78,17 +83,21 @@
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-    
+
         <Form.Field {form} name="emailConfirm">
           <Form.Control let:attrs>
             <Form.Label>Email Confirmation</Form.Label>
-            <Input {...attrs} bind:value={$formData.emailConfirm} type="email" />
+            <Input
+              {...attrs}
+              bind:value={$formData.emailConfirm}
+              type="email"
+            />
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-  
-        <Separator class="my-2"/>
-  
+
+        <Separator class="my-2" />
+
         <Form.Field {form} name="password">
           <Form.Control let:attrs>
             <Form.Label>Password</Form.Label>
@@ -96,7 +105,7 @@
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-    
+
         <Form.Field {form} name="passwordConfirm">
           <Form.Control let:attrs>
             <Form.Label>Password Confirm</Form.Label>
@@ -108,11 +117,8 @@
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-  
-        <Form.Button
-          class="w-full h-12"
-          formaction="?/registerEmail"
-        >
+
+        <Form.Button class="w-full h-12" formaction="?/registerEmail">
           Create Account
         </Form.Button>
       </div>
