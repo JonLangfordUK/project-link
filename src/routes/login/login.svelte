@@ -12,9 +12,9 @@
   import { Input } from "$lib/components/ui/input";
   import { OAuth, OAuthData } from "$lib/components/ui/oauth";
 
-  import google_logo from "$lib/assets/logos--google-icon.svg";
-  import github_logo from "$lib/assets/logos--github-icon.svg";
-  import discord_logo from "$lib/assets/logos--discord-icon.svg";
+  import DiscordLogo from "$lib/assets/icons/discord.svelte";
+  import GithubLogo from "$lib/assets/icons/github.svelte";
+  import GoogleLogo from "$lib/assets/icons/google.svelte";
 
   export let data: SuperValidated<Infer<FormSchema>>;
 
@@ -24,19 +24,19 @@
 
   const { form: formData, enhance } = form;
 
-  const oauthData: OAuthData[] = [
+  let oauthData: OAuthData[] = [
     {
-      logoComponent: google_logo,
+      logo: GoogleLogo,
       name: "Google",
       action: "?/loginOAuth&provider=google",
     },
     {
-      logoComponent: github_logo,
+      logo: GithubLogo,
       name: "Github",
       action: "?/loginOAuth&provider=github",
     },
     {
-      logoComponent: discord_logo,
+      logo: DiscordLogo,
       name: "Discord",
       action: "?/loginOAuth&provider=discord",
     },
@@ -44,6 +44,7 @@
 
   onMount(() => {
     ShowSubPage("Provider");
+    console.log(oauthData);
   });
 
   async function ShowSubPage(nextSubPage: string) {
@@ -64,9 +65,14 @@
 
 <div>
   <div id="Provider">
-    <OAuth {oauthData} onEmailClicked={() => {ShowSubPage("Email")}} />
+    <OAuth
+      {oauthData}
+      onEmailClicked={() => {
+        ShowSubPage("Email");
+      }}
+    />
   </div>
-  
+
   <form method="POST" use:enhance>
     <div id="Email">
       <div class="grid grid-cols-1 gap-2">
@@ -77,7 +83,7 @@
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-      
+
         <Form.Field {form} name="password">
           <Form.Control let:attrs>
             <Form.Label>Password</Form.Label>
@@ -85,11 +91,8 @@
           </Form.Control>
           <Form.FieldErrors />
         </Form.Field>
-      
-        <Form.Button
-          class="w-full h-12"
-          formaction="?/loginEmail"
-        >
+
+        <Form.Button class="w-full h-12" formaction="?/loginEmail">
           Login
         </Form.Button>
       </div>
