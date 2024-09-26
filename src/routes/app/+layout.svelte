@@ -28,8 +28,10 @@
   ];
 </script>
 
-<NavBar {routes} {userRoutes} {projects} {session} {supabase} />
+<div class="flex flex-col h-screen">
+  <NavBar {routes} {userRoutes} {projects} {session} {supabase} />
 
-<div class="m-4">
-  <slot />
+  <div class="flex flex-col flex-grow p-4">
+    <slot class="flex-grow m-4" />
+  </div>
 </div>
