@@ -1,16 +1,19 @@
 <script lang="ts">
-  import { Slider } from "$lib/components/ui/slider";
   import * as Resizable from "$lib/components/ui/resizable";
   import type { AssetSchema } from "./asset_schema.js";
   import type { FolderSchema } from "./folder_schema.js";
+  import FilterWindow from "./filter_window.svelte";
   import AssetWindow from "./asset_window.svelte";
   import DirectoryTree from "./directoryTree.svelte";
-  import Filter from "./filter.svelte";
   import Bar from "./bar.svelte";
 
   let assets: AssetSchema[] = Array.from({ length: 300 }, (_, i) => ({
     name: `MM_ExampleMaterial_${i}`,
     type: "image",
+    path: "/Content/Environments/Props/Materials/ExampleMaterial",
+    resourceSize: 512,
+    guid: `1b04529d-f36d-4bb3-8a06-cb15bc8f4baf`,
+    testType: "Hello Jon",
   }));
 
   let folders: FolderSchema[] = Array.from({ length: 10 }, (_, i) => ({
@@ -33,8 +36,14 @@
 
     <Resizable.Handle withHandle />
 
-    <Resizable.Pane defaultSize={10} minSize={5}>
-      <Filter />
+    <Resizable.Pane
+      defaultSize={10}
+      minSize={5}
+      class="flex flex-col flex-grow"
+    >
+      <FilterWindow
+        filterData={{ name: "Static Mesh", color: "bg-green-500" }}
+      />
     </Resizable.Pane>
 
     <Resizable.Handle withHandle />
