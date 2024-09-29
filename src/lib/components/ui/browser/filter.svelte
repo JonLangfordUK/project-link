@@ -9,11 +9,10 @@
   }
 </script>
 
-<Clickable onClicked={() => onClick(filterData.name)}>
-  <div
-    class="flex flex-row border rounded-sm bg-secondary hover:bg-slate-400 cursor-pointer"
-  >
-    <div class={`rounded-l-sm w-1 ${filterData.color}`} />
-    <span class="m-1">{filterData.name}</span>
-  </div>
+<Clickable
+  onClicked={() => onClick(filterData.name)}
+  class="flex flex-row rounded-sm bg-slate-300 hover:bg-slate-200"
+>
+  <div class={`rounded-l-sm w-1 ${filterData.color}`} />
+  <span class="m-1">{filterData.name}</span>
 </Clickable>

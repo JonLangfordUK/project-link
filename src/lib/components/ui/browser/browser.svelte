@@ -1,17 +1,22 @@
 <script lang="ts">
-  import * as Resizable from "$lib/components/ui/resizable";
   import type { FilterSchema } from "./filter_schema.js";
   import type { AssetSchema } from "./asset_schema.js";
   import type { FolderSchema } from "./folder_schema.js";
+
   import FilterWindow from "./filter_window.svelte";
   import AssetWindow from "./asset_window.svelte";
   import DirectoryTree from "./directoryTree.svelte";
   import Bar from "./bar.svelte";
+  import * as Resizable from "$lib/components/ui/resizable";
 
   let filterData: FilterSchema[] = [
     { name: "Static Mesh", color: "bg-cyan-500" },
     { name: "Material", color: "bg-green-500" },
     { name: "Texture", color: "bg-red-500" },
+    ...Array.from({ length: 100 }, (_, i) => ({
+      name: `Filter_${i}`,
+      color: `bg-color-${i % 10}`,
+    })),
   ];
 
   let assets: AssetSchema[] = Array.from({ length: 300 }, (_, i) => ({

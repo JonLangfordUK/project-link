@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Clickable from "$lib/components/ui/clickable/clickable.svelte";
   import type { FolderSchema } from "./folder_schema.js";
   import FolderIcon from "$lib/assets/icons/folder.svelte";
 
@@ -6,9 +7,9 @@
   export let folderData: FolderSchema;
 </script>
 
-<div>
+<Clickable class="hover:bg-slate-200 rounded-md">
   <div
-    class="overflow-hidden"
+    class="overflow-hidden p-2"
     style="width: {thumbSize}px; height: {thumbSize}px;"
   >
     <svelte:component this={FolderIcon} />
@@ -21,4 +22,4 @@
       {folderData.name}
     </span>
   </div>
-</div>
+</Clickable>

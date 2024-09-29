@@ -6,9 +6,9 @@
   export let onClicked:
     | ((e: ButtonEventHandler<MouseEvent>) => void)
     | null
-    | undefined;
+    | undefined = null;
 </script>
 
-<div class={className} on:click={onClicked}>
+<div class={className + " cursor-pointer"} on:click={onClicked}>
   <slot />
 </div>
