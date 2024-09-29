@@ -4,23 +4,27 @@
   import type { AssetSchema } from "./asset_schema.js";
   import type { FolderSchema } from "./folder_schema.js";
 
+  import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
+
   export let assets: AssetSchema[];
   export let folders: FolderSchema[];
   export let thumbSize: number[] | undefined = [150];
 </script>
 
-<div
-  class="flex-grow p-2 h-1 grid-container grid-cols-3 gap-2 overflow-y-auto"
-  style="--thumbSize: {thumbSize}px"
->
-  {#each folders as folderData}
-    <Folder {thumbSize} {folderData} />
-  {/each}
+<ScrollArea class="flex-grow p-2 h-1 pr-3">
+  <div
+    class="flex-grow p-2 grid-container grid-cols-3 gap-2"
+    style="--thumbSize: {thumbSize}px"
+  >
+    {#each folders as folderData}
+      <Folder {thumbSize} {folderData} />
+    {/each}
 
-  {#each assets as assetData}
-    <Asset {thumbSize} {assetData} />
-  {/each}
-</div>
+    {#each assets as assetData}
+      <Asset {thumbSize} {assetData} />
+    {/each}
+  </div>
+</ScrollArea>
 
 <style>
   .grid-container {
