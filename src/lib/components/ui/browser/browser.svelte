@@ -1,11 +1,18 @@
 <script lang="ts">
   import * as Resizable from "$lib/components/ui/resizable";
+  import type { FilterSchema } from "./filter_schema.js";
   import type { AssetSchema } from "./asset_schema.js";
   import type { FolderSchema } from "./folder_schema.js";
   import FilterWindow from "./filter_window.svelte";
   import AssetWindow from "./asset_window.svelte";
   import DirectoryTree from "./directoryTree.svelte";
   import Bar from "./bar.svelte";
+
+  let filterData: FilterSchema[] = [
+    { name: "Static Mesh", color: "bg-cyan-500" },
+    { name: "Material", color: "bg-green-500" },
+    { name: "Texture", color: "bg-red-500" },
+  ];
 
   let assets: AssetSchema[] = Array.from({ length: 300 }, (_, i) => ({
     name: `MM_ExampleMaterial_${i}`,
@@ -30,7 +37,7 @@
   <Bar bind:thumbSize />
 
   <Resizable.PaneGroup direction="horizontal" class="flex flex-col flex-grow">
-    <Resizable.Pane size defaultSize={20} minSize={5}>
+    <Resizable.Pane size defaultSize={10} minSize={5}>
       <DirectoryTree />
     </Resizable.Pane>
 
@@ -41,9 +48,7 @@
       minSize={5}
       class="flex flex-col flex-grow"
     >
-      <FilterWindow
-        filterData={{ name: "Static Mesh", color: "bg-green-500" }}
-      />
+      <FilterWindow {filterData} />
     </Resizable.Pane>
 
     <Resizable.Handle withHandle />
